@@ -1,0 +1,32 @@
+<form>
+  <mat-form-field style="width:40%;">
+    <mat-label>Nome do Ator ou Realizador</mat-label>
+    <input matInput type="text" name="person" [(ngModel)]="person" />
+  </mat-form-field>
+  <button mat-button color="primary" (click)="SearchPerson()">Pesquisar</button>
+  <mat-list>
+    <ng-container *ngFor="let movie of allDataResults">
+      <mat-list style="margin-left:30px;">
+        <mat-list-item>
+          <img src="{{ movie.posterBase64 }}" style="margin: 300px 0px 15px 700px;" width="150" alt="{{ movie.movieName }}" title="{{ movie.movieName }}" />
+        </mat-list-item>
+        <mat-list-item>
+          <b>{{ movie.movieName }}</b>
+        </mat-list-item>
+        <mat-list-item style="margin-left:30px;">
+          <b>&nbsp;Realizador:&nbsp;</b> {{ movie.directorName }}
+        </mat-list-item>
+        <mat-list-item style="margin-left:30px;" *ngIf="!movie.isDirector">
+          <b>&nbsp;Ator:&nbsp;</b> {{ movie.personName }}
+        </mat-list-item>
+        <mat-list-item style="margin-left:30px;">
+          <b>&nbsp;Protagonistas:&nbsp;</b> {{ movie.otherActors }}
+        </mat-list-item>
+        <mat-list-item style="margin-left:30px;">
+          <b>&nbsp;Ano de Lançamento:&nbsp;</b> {{ movie.releaseYear }}
+        </mat-list-item>
+      </mat-list>
+    </ng-container>
+  </mat-list>
+</form>
+
